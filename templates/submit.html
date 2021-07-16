@@ -1,0 +1,27 @@
+{% extends 'index.html'%}
+{%block title%}submit{%endblock%}
+{%block content%}
+ <div class='container '>
+ {% if not alltodo%}
+<div style='margin-top: 2rem;'>
+<h4 > OOPS !!!! dont have any tasks </h4>
+<h5 > Add some tasks</h5>
+<a class='btn btn-primary' href='add'>add task</a>
+</div>
+{%endif%}
+<div class='row' >
+{% for each in alltodo%}
+<div class="card col-md-6 text-center mx-auto" style=" width: 18rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: 5px 5px 5px 5px #888888;">
+  <div class="card-body">
+    <h5 class="card-title">{{each.title}} - {{each.priority}}</h5>
+    <p class="card-text">{{each.description}}</p>
+    <p class='card-text'>Last date- {{each.date}}</p>
+    <a href='/delete{{each.id}}' class='btn btn-danger'> Delete </a>
+    <a href='/edit{{each.id}}'class='btn btn-warning'> Edit </a>
+    <a href='/completed{{each.id}}'class='btn btn-success'> Done </a>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+ {%endblock%}

@@ -1,0 +1,39 @@
+{% extends 'index.html'%}
+{%block title%}sort{%endblock%}
+{%block content%}
+ <div class='container col-md-6' style='margin-top: 20px'>
+
+<form class="d-flex" method='get' action="{% url 'sortdata'%}">
+<div class='form-group m-2'>
+ <select class="form-select" name='filt' aria-label="Default select example">
+  <option selected>select any filter method</option>
+  <option value="title">title</option>
+  <option value="priority">priority</option>
+  <option value="date">date</option>
+</select> 
+</div>
+      <button class='btn btn-primary m-2 py-1' type='submit' style='height: 40px'> Submit </button>
+      </form>
+ {% if not alltodo%}
+<div style='margin-top: 2rem;'>
+<h4 > OOPS !!!! dont have any tasks </h4>
+<h5 > Add some tasks</h5>
+<a class='btn btn-primary' href='add'>add task</a>
+</div>
+{%endif%}
+<div class='row'>
+{% for each in alltodo%}
+<div class="card col-md-6 text-center mx-auto" style=" width: 18rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: 5px 5px 5px 5px #888888;">
+  <div class="card-body">
+    <h5 class="card-title">{{each.title}} - {{each.priority}}</h5>
+    <p class="card-text">{{each.description}}</p>
+    <p class='card-text'>Last date- {{each.date}}</p>
+    <a href='/delete{{each.id}}' class='btn btn-danger'> Delete </a>
+   <a href='/edit{{each.id}}'class='btn btn-warning'> Edit </a>
+    <a href='/completed{{each.id}}'class='btn btn-success'> Done </a>
+  </div>
+</div>
+{% endfor %}
+</div>
+</div>
+ {%endblock%}

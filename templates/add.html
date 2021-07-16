@@ -1,0 +1,26 @@
+{% extends 'index.html'%}
+{%block title%}Addtodo{%endblock%}
+{%block content%}
+ <div class='container col-md-6 p-5' style='margin-top:40px; border: 1px solid black; border-radius: 20px ; box-shadow: 5px 5px 5px 5px #888888;' >
+        <form method='post' action='submit' >
+        {% csrf_token %}
+            <div class='form-group mb-3' >
+                <label for='title'>TODO TITLE</label>
+                <input id='title' name='title' type='text' style='margin-top: 8px;' class='form-control'/>
+            </div>
+            <div class='form-group mb-3' >
+                <label for='description'>TODO Description</label>
+                <textarea id='description' name='description' style='margin-top: 8px;' type='text' class='form-control'> </textarea>
+            </div>
+            <div class='form-group mb-3' >
+                <label for='date'>TODO date</label>
+                <input id='date' name='date' type='date' style='margin-top: 8px;' class='form-control'/>
+            </div>
+            <div class='form-group mb-3' >
+                <label for='priority'>TODO priority</label>
+                <input id='priority' name='priority' style='margin-top: 8px;' type='integer' class='form-control'/>
+            </div>
+            <button type='submit' name='submit' class='btn btn-primary'> Add task </button>
+        </form>
+</div>
+ {%endblock%}
