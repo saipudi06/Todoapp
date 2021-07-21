@@ -1,17 +1,39 @@
 {% extends 'index.html'%}
 {%block title%}submit{%endblock%}
 {%block content%}
- <div class='container '>
+{% load static %}
+<div class='container m-2 pt-5'>
+{% if messages %}
+  {% for msg in messages %}
+    <div class="alert alert-info alert-dismissable">
+
+      {{msg.message}}
+    </div>
+  {% endfor %}
+{% endif %}
  {% if not alltodo%}
-<div style='margin-top: 2rem;'>
-<h4 style='font-family: verdana sans-serif; margin-top: 20px' > OOPS !!!! dont have any tasks </h4>
-<h5 style='font-family: verdana sans-serif; margin-top: 20px' > Add some tasks</h5>
-<a class='btn btn-primary' href='add'>add task</a>
+
+<div class='row text-center'>
+<div class='col-md-6' style='align-items: center; margin: auto; overflow:hidden; justify-content: center; display:flex;'>
+<div class="card" style="width: 18rem; box-shadow: 5px 5px 5px 5px #888888; border-radius: 20px;">
+ 
+  <div class="card-body">
+    <h5 class="card-title">Tasks</h5>
+    <h4 style='font-family: verdana sans-serif; margin-top: 20px' class="card-text">Ooops!!!...u dont have any tasks ...add some and complete them.</h4>
+    <a class='btn btn-primary' href='add'>add task</a>
+  </div>
 </div>
+</div>
+<div class='col-md-6'>
+<img src={% static 'todo1.jpg'%} style='min-width: 100%; min-height: 100%; flex-shrink:0;' />
+</div>
+</div>
+
 {%endif%}
+</div>
 <div class='row' >
 {% for each in alltodo%}
-<div class="card col-md-6 text-center mx-auto" style=" width: 18rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: 5px 5px 5px 5px #888888;">
+<div class="card col-md-6 text-center mx-auto" style=" width: 22rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: 5px 5px 5px 5px #888888;">
   <div class="card-body">
     <h5 class="card-title">{{each.title}} - {{each.priority}}</h5>
     <p class="card-text">{{each.description}}</p>

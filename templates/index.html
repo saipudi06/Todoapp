@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>{%block title%} Todo {%endblock%}</title>
+    <title>{%block title%} todo-app {%endblock%}</title>
   </head>
   <body>
   <div style='min-height: 100vh; width: 100%; position: relative'>
@@ -32,6 +32,18 @@
         <li class="nav-item">
           <a class="nav-link" href="done">completed</a>
         </li>
+              {% if user.is_authenticated %}
+      
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+
+      {% endif %}
         {% comment %} <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Dropdown
@@ -48,20 +60,44 @@
         <input class="form-control me-2" type="search" name='query' placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
+
     </div>
   </div>
 </nav>
+{% load static %}
 {%block content%} 
+{% if messages %}
+  {% for msg in messages %}
+    <div class="alert alert-info alert-dismissable">
+
+      {{msg.message}}
+    </div>
+  {% endfor %}
+{% endif %}
 <div class='container col-md-6' >
-{% if not alltodo%}
-<div style='margin-top: 2rem;'>
-<h4 style='font-family: verdana sans-serif; margin-top: 20px' > OOPS !!!! dont have any tasks </h4>
-<h5  style='font-family: verdana sans-serif; margin-top: 20px' > Add some tasks</h5>
-<a class='btn btn-primary' href='add'>add task</a>
+<h4 style='font-family: verdana sans-serif; margin-top: 20px' >welcome, {{user.username}} </h4>
+<div class='container mt-5 pt-5'>
+ {% if not alltodo%}
+
+<div class='row text-center'>
+<div class='col-md-6' style='align-items: center; margin: auto; overflow:hidden; justify-content: center; display:flex;'>
+<div class="card" style="width: 18rem; box-shadow: 5px 5px 5px 5px #888888; border-radius: 20px;">
+ 
+  <div class="card-body">
+    <h5 class="card-title">Tasks</h5>
+    <h4 style='font-family: verdana sans-serif; margin-top: 20px' class="card-text">Ooops!!!...u dont have any tasks ...add some and complete them.</h4>
+    <a class='btn btn-primary' href='add'>add task</a>
+  </div>
 </div>
-{%else%}
-<h4 style='font-family: verdana sans-serif; margin-top: 20px' >U have many taks...go complete them</h4>
+</div>
+<div class='col-md-6'>
+<img src={% static 'todo1.jpg'%} style='min-width: 100%; min-height: 100%; flex-shrink:0;' />
+</div>
+</div>
+{% else %}
+<h4> U have many tasks..go complete them</h4>
 {%endif%}
+</div>
 
 </div>
 {%endblock%}

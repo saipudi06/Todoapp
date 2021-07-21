@@ -6,11 +6,14 @@
 <div style='margin-top: 2rem;'>
 <h4 style='font-family: verdana sans-serif; margin-top: 20px' > you dont completed any task upto now</h4>
 <h5 style='font-family: verdana sans-serif; margin-top: 20px'> complete your tasks and come here</h5>
+{% load static %}
+<img src={% static 'todo2.jpg' %} style='max-width: 600px; max-height: 400px; flex-shrink:0;'/>
 </div>
 {%endif%}
+
+{% for each in alltodo%}
  <h3 style='font-family: verdana sans-serif; margin-top: 20px'> yay!!!..u had completed these tasks</h3>
  <div class='row'>
-{% for each in alltodo%}
 <div class="card col-md-6 text-center mx-auto" style=" width: 18rem; margin-top: 2rem; margin-bottom: 2rem; box-shadow: 5px 5px 5px 5px #888888;">
 
   <div class="card-body">

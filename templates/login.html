@@ -1,38 +1,45 @@
 <!doctype html>
 <html lang="en">
   <head>
-  {% load static %}
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
+   {% load static %}
+    {% load crispy_forms_tags%}
+    <style>
     body{
-      background-image: url("{% static 'home.jpg'%}");
+      background-image: url("{% static 'todo41.jpg'%}");
       background-repeat: no-repeat;
   background-attachment: fixed;  
   background-size: cover;
 
     }
-</style>
+    </style>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>home</title>
+    <title>Login</title>
   </head>
   <body>
-  <div class='container col-md-6' style='margin: auto;' >
-      <div class="card" style="width: 18rem;margin-top: 200px;box-shadow: 5px 5px 5px 5px #888888; border-radius: 20px;">
-  <div class="card-body">
-    <h5 class="card-title">Welcome to todo app</h5>
-    <p class="card-text">Please register or login to use the app...</p>
-    <a type='submit' class='btn btn-primary mt-3' href='/register'> register </a><br>
-      <a type='submit' class='btn btn-primary mt-3' href='/login_req'> login </a>
+<div class='container text-center' style='align-items:center; margin-top: 200px;'>
+<div class='card text-center col-md-6 p-4' style='margin: auto;border: 1px solid black; border-radius:30px;'>
+    <h1 class='card-title'> Login </h1>
+    
+    <form method='post' >
+         {% csrf_token %}
+     <div class='form-group my-3' >
+                {{login_form.username|as_crispy_field}}
+            </div>
+            <div class='form-group mb-3' >
+                {{login_form.password|as_crispy_field}}
+            </div> 
+            
+         <button type='submit' class='btn btn-primary'> Submit </button>
 
-  </div>
+    </form>
+    <p class='mt-2'> Dont have an account? <a href='/register'> Register</a> here</p>
+    </div>
 </div>
-      
-    </div>  
-
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
