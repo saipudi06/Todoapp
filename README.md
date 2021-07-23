@@ -24,3 +24,5 @@ $ python manage.py migrate
 
 $ python manage.py runserver
 
+# contributors:
+venkatesh patnala, patnala.1@iitj.ac.in
