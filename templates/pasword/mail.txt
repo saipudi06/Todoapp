@@ -1,0 +1,16 @@
+{% autoescape off %}
+Hello, {{username}}
+
+received a request for change of password. To initiate the password reset process for your account, click the link below.
+
+{{ protocol }}://{{ domain }}{% url 'password_reset_confirm' uidb64=uid token=token %}
+
+this is a single usable link. \
+If you need to reset your password again, please visit {{ protocol }}://{{domain}} and request another reset.
+
+ignore this mail, if u didnt attempted.
+
+Sincerely,
+venkatesh patnala
+
+{% endautoescape %}

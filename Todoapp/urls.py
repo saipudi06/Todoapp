@@ -15,7 +15,8 @@ urlpatterns = [
     path('edit<int:id>', views.edit, name='edit'),
     path('update<int:id>', views.update, name='update'),
     path('completed<int:id>', views.completed, name='completed'),
-    path('done', views.done, name='done')
+    path('done', views.done, name='done'),
+    path("password_reset", views.password_reset_request, name="password_reset")
     # path('home', views.home, name='home'),
 
 ]
